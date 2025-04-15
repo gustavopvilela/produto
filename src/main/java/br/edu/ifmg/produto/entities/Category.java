@@ -1,5 +1,6 @@
 package br.edu.ifmg.produto.entities;
 
+import br.edu.ifmg.produto.dtos.CategoryDTO;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -22,6 +23,11 @@ public class Category {
     public Category(Long id, String name) {
         this.setId(id);
         this.setName(name);
+    }
+
+    public Category (CategoryDTO dto) {
+        this.setId(dto.getId());
+        this.setName(dto.getName());
     }
 
     public Category() {

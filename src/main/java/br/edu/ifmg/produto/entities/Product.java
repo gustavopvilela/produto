@@ -14,7 +14,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(columnDefinition = "TEXT") /* O tipo String se comporta como VARCHAR, com isso mudamos para o tipo TEXT. */
     private String description;
+
     private double price;
     private String imageUrl;
     private Instant createdAt;
