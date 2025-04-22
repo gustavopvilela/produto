@@ -17,11 +17,12 @@ public class OpenApiConfig {
                 .info(
                     new Info()
                         .title("Produto API")
+                        .description("Projeto 01 - Prog. Backend")
                         .version("1.0")
                         .license(
                             new License()
                                 .name("Apache 2.0")
-                                .url("http://www.apache.org/licenses/LICENSE-2.0.html")
+                                .url("https://formiga.ifmg.edu.br")
                         )
                 );
     }
