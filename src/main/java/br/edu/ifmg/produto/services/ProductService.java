@@ -51,7 +51,11 @@ public class ProductService {
         Product entity = new Product();
         this.copyDtoToEntity(dto, entity);
         entity = productRepository.save(entity);
-        return new ProductDTO(entity);
+        return new ProductDTO(entity)
+                .add(linkTo(methodOn(ProductResource.class).findById(entity.getId())).withRel("Find product by id"))
+                .add(linkTo(methodOn(ProductResource.class).findAll(null)).withRel("All products"))
+                .add(linkTo(methodOn(ProductResource.class).update(entity.getId(), null)).withRel("Update product"))
+                .add(linkTo(methodOn(ProductResource.class).delete(entity.getId())).withRel("Delete product"));
     }
 
     @Transactional
@@ -60,7 +64,10 @@ public class ProductService {
             Product entity = productRepository.getReferenceById(id);
             this.copyDtoToEntity(dto, entity);
             entity = productRepository.save(entity);
-            return new ProductDTO(entity);
+            return new ProductDTO(entity)
+                    .add(linkTo(methodOn(ProductResource.class).findById(dto.getId())).withRel("Find product by id"))
+                    .add(linkTo(methodOn(ProductResource.class).findAll(null)).withRel("All products"))
+                    .add(linkTo(methodOn(ProductResource.class).delete(dto.getId())).withRel("Delete product"));
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFound("Product not found: " + id);
