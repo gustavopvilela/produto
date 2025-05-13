@@ -10,7 +10,7 @@ public class Factory {
         p.setName("iPhone XXX");
         p.setPrice(5000);
         p.setImageUrl("https://i1.sndcdn.com/artworks-VUPODJGHzFVyhXgV-ccH6ug-t500x500.jpg");
-        p.getCategories().add(new Category(60L, "News"));
+        p.getCategories().add(new Category(3L, "News"));
         return p;
     }
 
