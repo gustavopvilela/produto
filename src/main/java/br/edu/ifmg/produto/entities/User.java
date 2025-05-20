@@ -97,6 +97,14 @@ public class User {
         this.roles = roles;
     }
 
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
+    public boolean hasRole(String roleName) {
+        return !roles.stream().filter(r -> r.getAuthority().equals(roleName)).toList().isEmpty();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof User user)) return false;
