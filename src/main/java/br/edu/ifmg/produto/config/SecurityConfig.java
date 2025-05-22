@@ -9,32 +9,33 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(
-                authorize -> authorize.requestMatchers("/**").permitAll()
-            //.anyRequest()
-            //.authenticated()
-        );
-
-        return http.build();
-    }
-
-    @Bean
-    @Profile("test")
-    @Order(1)
-    public SecurityFilterChain h2SecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-        .securityMatcher(PathRequest.toH2Console())
-        .csrf(csrf -> csrf.disable())
-        .headers(headers -> headers
-            .frameOptions(frameOptions -> frameOptions.disable())
-        );
-        
-        return http.build();}
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//            .csrf(csrf -> csrf.disable())
+//            .authorizeHttpRequests(
+//                authorize -> authorize.requestMatchers("/**").permitAll()
+//            //.anyRequest()
+//            //.authenticated()
+//        );
+//
+//        return http.build();
+//    }
+//
+//    @Bean
+//    @Profile("test")
+//    @Order(2)
+//    public SecurityFilterChain h2SecurityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//        .securityMatcher(PathRequest.toH2Console())
+//        .csrf(csrf -> csrf.disable())
+//        .headers(headers -> headers
+//            .frameOptions(frameOptions -> frameOptions.disable())
+//        );
+//
+//        return http.build();
+//        }
 }
