@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -33,6 +34,7 @@ public class UserResource {
                     @ApiResponse(description = "Ok", responseCode = "200"),
             }
     )
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<Page<UserDTO>> findAll (Pageable pageable) {
         Page<UserDTO> users = userService.findAll(pageable);
         return ResponseEntity.ok().body(users);
@@ -47,6 +49,7 @@ public class UserResource {
                     @ApiResponse(description = "Not found", responseCode = "404")
             }
     )
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<UserDTO> findById (@PathVariable Long id) {
         UserDTO userDTO = userService.findById(id);
         return ResponseEntity.ok().body(userDTO);
@@ -63,6 +66,7 @@ public class UserResource {
                     @ApiResponse(description = "Forbidden", responseCode = "403")
             }
     )
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<UserDTO> create(@Valid @RequestBody UserInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -86,6 +90,7 @@ public class UserResource {
                     @ApiResponse(description = "Not found", responseCode = "404")
             }
     )
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserInsertDTO dto) {
         UserDTO user = userService.update(id, dto);
         return ResponseEntity.ok().body(user);
