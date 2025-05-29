@@ -6,6 +6,7 @@ import br.edu.ifmg.produto.util.Factory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@WebMvcTest(ProductResource.class)
+@WebMvcTest(value = ProductResource.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
 class ProductResourceTest {
     @Autowired
     private MockMvc mockMvc; // Responsável pelas requisições que quero testar.
