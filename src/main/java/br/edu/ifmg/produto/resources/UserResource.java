@@ -89,7 +89,6 @@ public class UserResource {
                     @ApiResponse(description = "Forbidden", responseCode = "403")
             }
     )
-    @PreAuthorize(value = "hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<UserDTO> signUp(@Valid @RequestBody UserInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
